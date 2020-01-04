@@ -12,6 +12,9 @@ public class Window extends JFrame {
 	Window(int width, int height, JPanel panel){
 		setTitle(TITTLE_STRING);
 		setSize(width, height);
+		gamePanel = panel;
+		add(gamePanel);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	}
 	
