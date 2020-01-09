@@ -20,7 +20,7 @@ public class Main {
 			@Override
 			public void paint(Graphics g) {
 				super.paint(g);
-				Invaders invaders = new Invaders(0, 0, 10, 10, 5);
+				Invaders invaders = new Invaders(0, 0, 8, 8, 2);
 				invaders.draw(g);
 			}
 		});

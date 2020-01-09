@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
@@ -32,7 +33,7 @@ public class Invaders {
 	private int sw_img;
 	private int sh_img;
 	
-	private Invader[][] ins;
+	private Vector<Invader> ins;
 	// The coordinate of the invaders
 	private int x, y;
 	private int rows;
@@ -56,25 +57,23 @@ public class Invaders {
 		this.rows = rows;
 		this.columns = columns;
 		this.space = space;
+		ins = new Vector<Invaders.Invader>();
 		for(int i = 0; i < rows; i ++) {
 			for(int j = 0; j < columns; j ++) {
 				int ix = x + space * j + DWIDTH_IMG * j;
 				int iy = y + space * i + DHEIGHT_IMG * i;
-				ins[i][j]  = new Invader(true, ix, iy); 
+				ins.add(new Invader(true, ix, iy));
 			}
 		}
 	}
 	
 	void draw(Graphics g) {
-		for(int i = 0; i < rows; i ++) {
-			for(int j = 0; j < columns; j ++) {
-				Invader in = ins[i][j];
-				int dx1 = in.x;
-				int dy1 = in.y;
-				int dx2 = in.x + DWIDTH_IMG;
-				int dy2 = in.y + DHEIGHT_IMG;
-				g.drawImage(img, dx1, dy1, dx2, dy2, 0, 0, sw_img, sh_img, null);
-			}
+		for(Invader in : ins) {
+			int dx1 = in.x;
+			int dy1 = in.y;
+			int dx2 = in.x + DWIDTH_IMG;
+			int dy2 = in.y + DHEIGHT_IMG;
+			g.drawImage(img, dx1, dy1, dx2, dy2, 0, 0, sw_img, sh_img, null);
 		}
 	}
 
