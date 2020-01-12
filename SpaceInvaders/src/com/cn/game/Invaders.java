@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 public class Invaders {
 	
 	private static final String DIR_IMG = "images/invader.png";
+	// The size of the printed image
 	private static final int DWIDTH_IMG = 32;
 	private static final int DHEIGHT_IMG = 32;
 	
@@ -36,36 +37,40 @@ public class Invaders {
 	private Vector<Invader> ins;
 	// The coordinate of the invaders
 	private int x, y;
-	private int rows;
-	private int columns;
+	private int offset;
+	private int num;
 	// The space between each invader
 	private int space;
+	// The left and right boundary of the movement;
+	private int left_boundary, right_boundary;
 	
-	public Invaders(int x, int y, int rows, int columns, int space) {
+	public Invaders(int x, int y, int offset, int num, int space, int left_boundary, int right_boundary) {
 		
 		try {
 			img = ImageIO.read(new File(DIR_IMG));
 			sw_img = img.getWidth();
 			sh_img = img.getHeight();
 		} catch (IOException e) {
-			System.out.println("Can not load Invader image!");
+			System.out.println("Fail to load Invader image!");
 			e.printStackTrace();
 		}
 		
 		this.x = x;
 		this.y = y;
-		this.rows = rows;
-		this.columns = columns;
+		this.offset = offset;
+		this.num = num;
 		this.space = space;
+		this.left_boundary = left_boundary;
+		this.right_boundary = right_boundary;
 		ins = new Vector<Invaders.Invader>();
-		for(int i = 0; i < rows; i ++) {
-			for(int j = 0; j < columns; j ++) {
-				int ix = x + space * j + DWIDTH_IMG * j;
-				int iy = y + space * i + DHEIGHT_IMG * i;
-				ins.add(new Invader(true, ix, iy));
-			}
+		for(int j = 0; j < num; j ++) {
+			int ix = x + space * j + DWIDTH_IMG * j + offset;
+			int iy = y;
+			ins.add(new Invader(true, ix, iy));
 		}
 	}
+	
+	
 	
 	void draw(Graphics g) {
 		for(Invader in : ins) {

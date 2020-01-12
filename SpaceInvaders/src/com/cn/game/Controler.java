@@ -1,21 +1,21 @@
 package com.cn.game;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Window extends JFrame {
+public class Controler extends JFrame {
 	
 	private static final String TITTLE_STRING = "Space Invader";
-	
 	private JPanel gamePanel;
 
-	Window(int width, int height, JPanel panel){
+	Controler(int width, int height){
 		setTitle(TITTLE_STRING);
 		setSize(width, height);
-		gamePanel = panel;
-		add(gamePanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
 	}
+	
+	
 	
 }
